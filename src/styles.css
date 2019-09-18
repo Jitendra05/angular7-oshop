@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+
+/* * {
+    box-sizing: border-box;
+} */
+
+/* html {
+    font-size: 62.5%;
+} */
+
+body {
+    /* font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    color:#333;
+    line-height: 1.6; */
+    margin-top: 2rem;
+    padding: 2rem;
+    background: rgb(220, 211, 245);
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.is-active {
+    background: whitesmoke;
+    font-weight: bold;
+    color: blue;
+    font-size: 1.6rem;
+    font-style: italic;
+}
+
+
+.page-header {
+    /* background: #ece8e8; */
+    margin-bottom: 0 0 5rem 0;
+    padding: 1rem 0;
+}
+
+.page-header__title {
+    font-weight: 300;
+    margin: 0;
+}
+
+.container  {
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 0 1.6rem;
+}

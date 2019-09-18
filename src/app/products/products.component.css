@@ -1,0 +1,11 @@
+.card-footer {
+    padding: 0;
+}
+
+.card {
+    margin-bottom: 3rem;
+}
+
+.sticky-top {
+   top: 5rem;
+}

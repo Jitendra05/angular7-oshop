@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-md-5">
+    <form #f="ngForm" (ngSubmit)="submit(f.value)" class="example-container">
+      <mat-form-field>
+        <input #title="ngModel"  [(ngModel)]="product.title" name="title" matInput placeholder="Title" 
+        type="text" required />
+      </mat-form-field>
+      <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+        Title is required.
+      </div>
+      <mat-form-field>
+        <input #price="ngModel" [(ngModel)]="product.price" name="price"  matInput placeholder="Price" type="number"
+        required [min]="0"
+        />
+        <span matPrefix>₹&nbsp;</span>
+      </mat-form-field>
+      <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+        <div *ngIf="price.errors.required">Price is required.</div>
+        <div *ngIf="price.errors.min">Price shuold be 0 or higher.</div>
+      </div>
+        <mat-form-field>
+          <mat-label>Select a Category</mat-label>
+          <mat-select #category="ngModel"  [(ngModel)]="product.category" name="category" required>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let c of categories$ | async" [value]="c.key">
+              {{c.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+          Category is required.
+        </div>
+      <mat-form-field>
+        <input #imageUrl="ngModel"  [(ngModel)]="product.imageUrl" name="imageUrl" matInput placeholder="Image URL" 
+        type="text" required url />
+      </mat-form-field>
+      <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+        <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
+        <div *ngIf="imageUrl.errors.url">Please provide a valid Image URL.</div>
+      </div>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary">Save</button>
+        <button *ngIf="id" type="button" (click)="delete()" mat-raised-button color="warn">Delete</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="product.title" class="col-md-1 straight-line"></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+    <div *ngIf="product.title" class="card" style="width: 18rem;">
+      <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text">{{product.price|currency:'INR':true}}</p>
+      </div>
+    </div>
+  </div>
+</div>

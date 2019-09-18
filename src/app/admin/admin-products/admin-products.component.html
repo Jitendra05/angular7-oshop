@@ -1,0 +1,72 @@
+<div class="mb-3"></div>
+<a routerLink="/admin/products/new" class="btn btn-primary">
+  Add New Product
+</a>
+<div class="mb-3"></div>
+<div class="form-group">
+  <input autofocus #query type="text" (keyup)="filter(query.value)" class="form-control" placeholder="Search..."/>
+</div>
+<div class="mb-4"></div>
+<data-table id="products-grid"
+headerTitle="Products"
+[items]="items"
+[itemCount]="itemCount"
+(reload)="reloadItems($event)"
+
+(rowClick)="rowClick($event)"
+(rowDoubleClick)="rowDoubleClick($event)"
+[rowTooltip]="rowTooltip"
+>
+<data-table-column
+    [property]="'title'"
+    [header]="'Title'"
+    [sortable]="true"
+    [resizable]="true">
+</data-table-column>
+<data-table-column
+    [property]="'category'"
+    [header]="'Category'"
+    [sortable]="true"
+    [resizable]="true">
+</data-table-column>
+<data-table-column
+    [property]="'price'"
+    [header]="'Price'"
+    [sortable]="true"
+    [resizable]="true">
+    <ng-template #dataTableCell let-item="item">
+        <span>{{item.price | currency:'INR':true}}</span>
+    </ng-template>
+</data-table-column>
+<data-table-column
+    [header]="'Action'">
+    <ng-template #dataTableCell let-item="item">
+      <a [routerLink]="['/admin/products/',item.key]">
+       <i class="fa fa-pencil"></i>
+       <i class="ml-3 fa fa-trash" aria-hidden="true"></i>
+       </a>
+    </ng-template>
+</data-table-column>
+</data-table>
+
+<!-- <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of filteredProducts">
+      <td>{{p.title}}</td>
+      <td>{{p.price|currency:'INR':true}}</td>
+      <td>
+        <a [routerLink]="['/admin/products/',p.key]">
+         Edit
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
